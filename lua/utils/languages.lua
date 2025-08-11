@@ -49,10 +49,10 @@ local languages = {
 	},
 	["rust_analyzer"] = {
 	},
-	ts_ls = {
-	},
-	pyright = {
-	}
+	ts_ls = {},
+	pyright = {},
+	svelte = {},
+	emmet_language_server = {},
 }
 
 
