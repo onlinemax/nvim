@@ -19,7 +19,7 @@ return {
 			-- ... Your other configuration ...
 			snippet = {
 				expand = function(args)
-					luasnip.lsp_expands(args.body)
+					luasnip.lsp_expand(args.body)
 				end,
 			},
 			window = {
