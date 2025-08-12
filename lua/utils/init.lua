@@ -2,10 +2,15 @@ require("utils.languages")
 require("utils.keymaps")
 
 -- This is to format on save
-vim.api.nvim_create_autocmd({ "BufWritePre", "BUfWrite" }, {
+vim.api.nvim_create_autocmd({ "BufWritePre", "BufWrite" }, {
 	pattern = "*",
 	callback = function()
-		vim.lsp.buf.format()
+		local clients = vim.lsp.get_clients()
+		for _, client in ipairs(clients) do
+			if (client.capabilities.textDocument.formatting.dynamicRegistration) then
+				vim.lsp.buf.format()
+			end
+		end
 	end
 })
 
