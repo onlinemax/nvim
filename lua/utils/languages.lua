@@ -47,12 +47,6 @@ local languages = {
 			Lua = {}
 		}
 	},
-	["rust_analyzer"] = {
-	},
-	ts_ls = {},
-	pyright = {},
-	svelte = {},
-	emmet_language_server = {},
 }
 
 
