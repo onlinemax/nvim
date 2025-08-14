@@ -3,6 +3,7 @@ require("create_lazy")
 vim.o.relativenumber = true
 vim.o.number = true
 vim.o.tabstop = 2
+vim.o.ignorecase = true
 vim.o.shiftwidth = 2
 
 
