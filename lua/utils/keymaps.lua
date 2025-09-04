@@ -10,6 +10,7 @@ vim.keymap.set("n", '<leader>f', vim.lsp.buf.format, { desc = "Format Buffer" })
 
 vim.keymap.set("n", "<leader>sf", require("fzf-lua").files, { desc = "Seach files" })
 vim.keymap.set("n", "<leader>sg", require("fzf-lua").live_grep, { desc = "Seach files" })
+vim.keymap.set("n", "<leader>sh", require("fzf-lua").helptags, { desc = "Seach help" })
 
 
 vim.keymap.set("n", "<leader>rn", function()
@@ -20,10 +21,11 @@ vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "Code Action
 -- Lsp things
 vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "Go to definition" })
 vim.keymap.set("n", "K", vim.lsp.buf.hover);
--- Utility to move lines with alt-key
-vim.keymap.set("n", "<A-j>", ":m .+1<CR>==", { desc = "Move line down" });
-vim.keymap.set("n", "<A-k>", ":m .-2<CR>==", { desc = "Move line up" });
-vim.keymap.set("i", "<A-k>", "<Esc>:m .-2<CR>==gi", { desc = "Move line up" });
-vim.keymap.set("i", "<A-j>", "<Esc>:m .+1<CR>==gi", { desc = "Move line down" });
-vim.keymap.set("v", "<A-j>", ":'<,'>:m .+1<CR>gv=gv", { desc = "Move lines down" });
-vim.keymap.set("v", "<A-k>", ":'<,'>:m .-2<CR>gv=gv", { desc = "Move lines up" });
+
+--- Utility to move lines with alt-key
+vim.keymap.set("n", "<A-j>", "]e", { desc = "Move line down", remap = true });
+vim.keymap.set("n", "<A-k>", "[e", { desc = "Move line up", remap = true });
+vim.keymap.set("v", "<A-j>", "]egv", { desc = "Move lines down", remap = true });
+vim.keymap.set("v", "<A-k>", "[egv", { desc = "Move lines up", remap = true });
+vim.keymap.set("v", "<", "<gv");
+vim.keymap.set("v", ">", ">gv");

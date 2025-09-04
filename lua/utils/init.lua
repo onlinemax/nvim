@@ -21,3 +21,12 @@ for name, icon in pairs(symbols) do
 	local hl = "DiagnosticSign" .. name
 	vim.fn.sign_define(hl, { text = icon, numhl = hl, texthl = hl })
 end
+
+-- Open markdown viewer
+vim.api.nvim_create_user_command('PeekOpen', require('peek').open, {})
+vim.api.nvim_create_user_command('PeekClose', require('peek').close, {})
+
+--Recognize tpp files as cpp files
+vim.filetype.add({
+	extension = { tpp = "cpp" }
+})
