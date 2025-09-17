@@ -105,6 +105,7 @@ vim.lsp.config('*', {
 	capabilities = capabilities
 })
 
+
 for language, opts in pairs(languages) do
 	vim.lsp.config(language, opts)
 	vim.lsp.enable(language)
