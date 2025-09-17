@@ -1,5 +1,6 @@
 require("utils.languages")
 require("utils.keymaps")
+require("utils.yank")
 
 -- This is to format on save
 vim.api.nvim_create_autocmd({ "BufWritePre", "BufWrite" }, {
@@ -7,7 +8,7 @@ vim.api.nvim_create_autocmd({ "BufWritePre", "BufWrite" }, {
 	callback = function()
 		local clients = vim.lsp.get_clients()
 		for _, client in ipairs(clients) do
-			if (client.capabilities.textDocument.formatting.dynamicRegistration) then
+			if client:supports_method("textDocument/formatting", vim.api.nvim_get_current_buf()) then
 				vim.lsp.buf.format()
 			end
 		end
@@ -16,11 +17,12 @@ vim.api.nvim_create_autocmd({ "BufWritePre", "BufWrite" }, {
 
 -- Change the diagnostic symbols to icon
 local symbols = { Error = "󰅙", Info = "󰋼", Hint = "󰌵", Warn = "" }
+local diagnostic_config = { signs = { text = {} } };
 
 for name, icon in pairs(symbols) do
-	local hl = "DiagnosticSign" .. name
-	vim.fn.sign_define(hl, { text = icon, numhl = hl, texthl = hl })
+	diagnostic_config.signs.text[vim.diagnostic.severity[string.upper(name)]] = icon;
 end
+vim.diagnostic.config(diagnostic_config);
 
 -- Open markdown viewer
 vim.api.nvim_create_user_command('PeekOpen', require('peek').open, {})

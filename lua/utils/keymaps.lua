@@ -11,6 +11,10 @@ vim.keymap.set("n", '<leader>f', vim.lsp.buf.format, { desc = "Format Buffer" })
 vim.keymap.set("n", "<leader>sf", require("fzf-lua").files, { desc = "Seach files" })
 vim.keymap.set("n", "<leader>sg", require("fzf-lua").live_grep, { desc = "Seach files" })
 vim.keymap.set("n", "<leader>sh", require("fzf-lua").helptags, { desc = "Seach help" })
+vim.keymap.set("n", "<leader>th", function()
+	vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+end, { desc = "toggle hinlay hits" })
+
 
 
 vim.keymap.set("n", "<leader>rn", function()

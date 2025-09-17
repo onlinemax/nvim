@@ -5,6 +5,7 @@ vim.o.number = true
 vim.o.tabstop = 2
 vim.o.ignorecase = true
 vim.o.shiftwidth = 2
+vim.o.undofile = true
 
 
 vim.o.foldcolumn = '1' -- '0' is not bad
