@@ -1,5 +1,4 @@
 vim.keymap.set("n", '\\', ':Neotree toggle<CR>', { desc = "Show file tree (Neotree) " })
-vim.keymap.set("n", '<C-\\>', ':Neotree toggle buffers right<CR>', { desc = 'Show Buffers' })
 
 vim.keymap.set("n", '<C-h>', '<C-w>h', { desc = "Go to the window at the left" })
 vim.keymap.set("n", '<C-j>', '<C-w>j', { desc = "Go to the window at the bottom" })
