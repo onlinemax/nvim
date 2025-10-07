@@ -3,7 +3,7 @@ require("create_lazy")
 vim.o.relativenumber = true
 vim.o.number = true
 vim.o.tabstop = 2
-vim.o.ignorecase = true
+vim.o.smartcase = true
 vim.o.shiftwidth = 2
 vim.o.undofile = true
 
@@ -18,16 +18,17 @@ vim.o.foldenable = true
 vim.g.mapleader = " "
 vim.g.localmapleader = "\\"
 
-require("lazy").setup({
-	spec = {
-		{ import = "plugins" },
-	},
-	install = { colorscheme = { "tokyonight-storm" } },
-	checker = { enabled = true },
-})
+-- require("lazy").setup({
+-- 	spec = {
+-- 		{ import = "plugins" },
+-- 	},
+-- 	install = { colorscheme = { "tokyonight-storm" } },
+-- 	checker = { enabled = true },
+-- })
 
 
 
+require("plugins")
 require("utils")
 
 vim.cmd('colorscheme tokyonight-storm')
