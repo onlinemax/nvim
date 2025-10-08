@@ -45,8 +45,8 @@ local languages = {
 		}
 	},
 	denols = {
-		root_dir = function(bufnr, on_dir)
-			root_file = vim.fs.root(0, 'deno.json')
+		root_dir = function(_, on_dir)
+			local root_file = vim.fs.root(0, 'deno.json')
 			if root_file ~= nil then
 				on_dir(vim.fs.root(0, 'deno.json'))
 			end

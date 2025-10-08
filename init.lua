@@ -1,5 +1,3 @@
-require("create_lazy")
-
 vim.o.relativenumber = true
 vim.o.number = true
 vim.o.tabstop = 2
@@ -17,15 +15,6 @@ vim.o.foldenable = true
 
 vim.g.mapleader = " "
 vim.g.localmapleader = "\\"
-
--- require("lazy").setup({
--- 	spec = {
--- 		{ import = "plugins" },
--- 	},
--- 	install = { colorscheme = { "tokyonight-storm" } },
--- 	checker = { enabled = true },
--- })
-
 
 
 require("plugins")
