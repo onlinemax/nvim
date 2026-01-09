@@ -74,6 +74,13 @@ local languages = {
 		}
 	},
 	ts_ls = {
+		root_dir = function(_, on_dir)
+			local root_file = vim.fs.root(0, 'deno.json')
+			if root_file == nil then
+				on_dir()
+			end
+		end,
+
 		settings = {
 			typescript = {
 				inlayHints = {
@@ -88,7 +95,7 @@ local languages = {
 				},
 			},
 		},
-	}
+	},
 }
 
 

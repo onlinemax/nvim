@@ -1,14 +1,19 @@
 require("utils.languages")
 require("utils.keymaps")
 require("utils.yank")
+require("utils.dapconfig")
 
+local format_on_save = true
+vim.keymap.set('n', '<leader>of', function()
+	format_on_save = not format_on_save
+end, { desc = '[O] ption [F]ormat on save' })
 -- This is to format on save
 vim.api.nvim_create_autocmd({ "BufWritePre", "BufWrite" }, {
 	pattern = "*",
 	callback = function()
 		local clients = vim.lsp.get_clients()
 		for _, client in ipairs(clients) do
-			if client:supports_method("textDocument/formatting", vim.api.nvim_get_current_buf()) then
+			if client:supports_method("textDocument/formatting", vim.api.nvim_get_current_buf()) and format_on_save then
 				vim.lsp.buf.format()
 			end
 		end

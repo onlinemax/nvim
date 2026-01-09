@@ -151,6 +151,9 @@ local mason_lspconfig_opts = {
 		"neovim/nvim-lspconfig",
 	},
 }
+local image_opts = {
+	backend = "ueberzug",
+}
 
 require("nvim-treesitter.configs").setup({
 	ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "markdown", "markdown_inline" },
@@ -161,12 +164,12 @@ require("nvim-treesitter.configs").setup({
 })
 
 local plugins_setup = {
-	"trouble", "treesitter-context", "ufo", "unimpaired", "which-key", "mason", "leetcode", {"mason-lspconfig", mason_lspconfig_opts}
+	"trouble", "treesitter-context", "ufo", "unimpaired", "which-key", "mason", "leetcode", { "mason-lspconfig", mason_lspconfig_opts }, { "image", image_opts }
 }
 
 for _, plugin in ipairs(plugins_setup) do
 	if vim.isarray(plugin) then
-		require(plugin[1]).setup(plugin[2])	
+		require(plugin[1]).setup(plugin[2])
 	else
 		require(plugin).setup()
 	end
