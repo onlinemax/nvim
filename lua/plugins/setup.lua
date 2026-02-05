@@ -1,11 +1,14 @@
 local function setup_mini()
 	--TODO: Please learn about how to use it perfectly
 	require("mini.ai").setup()
-	require("mini.pairs").setup()
 	require("mini.surround").setup()
 	require("mini.indentscope").setup()
 	require("mini.cursorword").setup()
 	require("mini.hipatterns").setup()
+	require("mini.icons").setup()
+	require("mini.git").setup()
+	require("mini.diff").setup()
+	require('mini.statusline').setup()
 end
 
 local function setup_peek()
@@ -153,6 +156,11 @@ local mason_lspconfig_opts = {
 }
 local image_opts = {
 	backend = "ueberzug",
+	integrations = {
+		typst = {
+			enabled = false
+		}
+	}
 }
 
 require("nvim-treesitter.configs").setup({
@@ -164,7 +172,7 @@ require("nvim-treesitter.configs").setup({
 })
 
 local plugins_setup = {
-	"trouble", "treesitter-context", "ufo", "unimpaired", "which-key", "mason", "leetcode", { "mason-lspconfig", mason_lspconfig_opts }, { "image", image_opts }
+	"trouble", "treesitter-context", "ufo", "unimpaired", "which-key", "mason", "leetcode", "nvim-autopairs", { "mason-lspconfig", mason_lspconfig_opts }, { "image", image_opts }
 }
 
 for _, plugin in ipairs(plugins_setup) do

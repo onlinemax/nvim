@@ -22,7 +22,12 @@ vim.api.nvim_create_autocmd({ "BufWritePre", "BufWrite" }, {
 
 -- Change the diagnostic symbols to icon
 local symbols = { Error = "󰅙", Info = "󰋼", Hint = "󰌵", Warn = "" }
-local diagnostic_config = { signs = { text = {} } };
+
+local diagnostic_config = {
+	virtual_text = true,
+	float = { border = 'rounded' },
+	signs = { text = {} },
+};
 
 for name, icon in pairs(symbols) do
 	diagnostic_config.signs.text[vim.diagnostic.severity[string.upper(name)]] = icon;
