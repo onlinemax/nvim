@@ -5,6 +5,8 @@ vim.o.smartcase = true
 vim.o.ignorecase = true
 vim.o.shiftwidth = 2
 vim.o.undofile = true
+-- this is important if you're going to use an application that uses a filewatcher (bundler, cron)
+vim.o.backupcopy = "yes"
 
 
 vim.o.foldcolumn = '1' -- '0' is not bad
@@ -22,3 +24,4 @@ require("plugins")
 require("utils")
 
 vim.cmd('colorscheme tokyonight-night')
+vim.lsp.log.set_level("trace")

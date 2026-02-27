@@ -1,4 +1,3 @@
--- This file installs all the plugins
 local function install(names, load)
 	local specs = vim.tbl_map(function(x)
 		if (type(x) == "string") then
@@ -12,13 +11,14 @@ local function install(names, load)
 end
 
 
+
 install({ "windwp/nvim-ts-autotag", "neovim/nvim-lspconfig", "ibhagwan/fzf-lua", "mason-org/mason-lspconfig.nvim",
 	"mason-org/mason.nvim", "echasnovski/mini.nvim", "folke/tokyonight.nvim", "nvim-treesitter/nvim-treesitter",
 	"nvim-treesitter/nvim-treesitter-context", "folke/trouble.nvim", 'kevinhwang91/nvim-ufo', 'kevinhwang91/promise-async',
 	"tummetott/unimpaired.nvim", "folke/which-key.nvim", "nvim-neo-tree/neo-tree.nvim", "nvim-lua/plenary.nvim",
 	"MunifTanjim/nui.nvim", "nvim-tree/nvim-web-devicons",
 	"folke/which-key.nvim", "kawre/leetcode.nvim", "chomosuke/typst-preview.nvim", "mfussenegger/nvim-dap",
-	"3rd/image.nvim", "windwp/nvim-autopairs" })
+	"3rd/image.nvim", "windwp/nvim-autopairs", "lervag/vimtex" })
 
 -- Those plugins require special configuration
 install(

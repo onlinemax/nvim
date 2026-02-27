@@ -124,6 +124,10 @@
       "rev": "75eb0cdee816f4642fe92ffd267a1fc1b02a0117",
       "src": "https://github.com/tummetott/unimpaired.nvim"
     },
+    "vimtex": {
+      "rev": "95b93a24740f7b89dd8331326b41bdd1337d79f6",
+      "src": "https://github.com/lervag/vimtex"
+    },
     "which-key.nvim": {
       "rev": "904308e6885bbb7b60714c80ab3daf0c071c1492",
       "src": "https://github.com/folke/which-key.nvim"

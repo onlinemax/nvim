@@ -1,3 +1,5 @@
+-- This file setups all the plugins which are not lazy loaded
+
 local function setup_mini()
 	--TODO: Please learn about how to use it perfectly
 	require("mini.ai").setup()
@@ -166,15 +168,17 @@ local image_opts = {
 require("nvim-treesitter.configs").setup({
 	ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "markdown", "markdown_inline" },
 	auto_install = true,
+	-- For latexmk it conflicts with tree-sitter for its own reasons. see :help vimtex-faq-treesitter
+	ignore_install = { "latex" },
 	highlight = {
 		enable = true
 	}
 })
 
 local plugins_setup = {
-	"trouble", "treesitter-context", "ufo", "unimpaired", "which-key", "mason", "leetcode", "nvim-autopairs", { "mason-lspconfig", mason_lspconfig_opts }, { "image", image_opts }
+	"trouble", "treesitter-context", "ufo", "unimpaired", "which-key", "mason", "leetcode", "nvim-autopairs", { "mason-lspconfig", mason_lspconfig_opts }, { "image", image_opts },
 }
-
+vim.g.vimtex_view_method = 'zathura';
 for _, plugin in ipairs(plugins_setup) do
 	if vim.isarray(plugin) then
 		require(plugin[1]).setup(plugin[2])
