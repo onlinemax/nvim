@@ -40,6 +40,10 @@
       "rev": "73813308abc2eaeff2bc0d3f2f79270c491be9d7",
       "src": "https://github.com/L3MON4D3/LuaSnip"
     },
+    "markdown-preview.nvim": {
+      "rev": "a923f5fc5ba36a3b17e289dc35dc17f66d0548ee",
+      "src": "https://github.com/iamcco/markdown-preview.nvim"
+    },
     "mason-lspconfig.nvim": {
       "rev": "6bdb14f230de0904229ec367b410fb817e59b072",
       "src": "https://github.com/mason-org/mason-lspconfig.nvim"

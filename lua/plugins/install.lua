@@ -1,4 +1,5 @@
-local function install(names, load)
+local function install(names, load, add)
+	add = add or true
 	local specs = vim.tbl_map(function(x)
 		if (type(x) == "string") then
 			return "https://github.com/" .. x
@@ -7,7 +8,9 @@ local function install(names, load)
 		return x
 	end
 	, names)
-	vim.pack.add(specs, { load = load, confirm = false })
+	if add then
+		vim.pack.add(specs, { load = load, confirm = false })
+	end
 end
 
 
@@ -18,7 +21,7 @@ install({ "windwp/nvim-ts-autotag", "neovim/nvim-lspconfig", "ibhagwan/fzf-lua",
 	"tummetott/unimpaired.nvim", "folke/which-key.nvim", "nvim-neo-tree/neo-tree.nvim", "nvim-lua/plenary.nvim",
 	"MunifTanjim/nui.nvim", "nvim-tree/nvim-web-devicons",
 	"folke/which-key.nvim", "kawre/leetcode.nvim", "chomosuke/typst-preview.nvim", "mfussenegger/nvim-dap",
-	"3rd/image.nvim", "windwp/nvim-autopairs", "lervag/vimtex" })
+	"3rd/image.nvim", "windwp/nvim-autopairs", "lervag/vimtex", })
 
 -- Those plugins require special configuration
 install(
@@ -49,3 +52,14 @@ install({ "toppair/peek.nvim" }, function(plug_data)
 	end)
 	coroutine.resume(build_routine, plug_data)
 end)
+
+install({ "iamcco/markdown-preview.nvim" }, function(plug_data)
+	local build_routine = coroutine.create(function(data)
+		vim.system({ "cd app && yarn install" }, { cwd = data.path }, function(o)
+			if o.code ~= 0 then
+				vim.print("Couln't execute command: " .. o.stderr);
+			end
+		end)
+	end)
+	coroutine.resume(build_routine, plug_data)
+end, false)
