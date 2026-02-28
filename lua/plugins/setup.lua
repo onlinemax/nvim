@@ -145,15 +145,11 @@ require("fzf-lua").setup({
 })
 local mason_lspconfig_opts = {
 	{
-		ensure_installed = { "lua_ls", "rust_analyzer", "ts_ls", "pyright", "svelte", "emmet_language_server", "qmlls" },
+		ensure_installed = { "lua_ls", "rust_analyzer", "ts_ls", "pyright", "svelte", "emmet_language_server", "qmlls", "clangd@snapshot_20260222" },
 
 		automatic_enable = {
 			exclude = { "lua_ls", "denols", "jsonls" }
 		}
-	},
-	dependencies = {
-		{ "mason-org/mason.nvim", opts = {} },
-		"neovim/nvim-lspconfig",
 	},
 }
 local image_opts = {
