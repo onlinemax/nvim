@@ -1,3 +1,5 @@
+local benchmark = require('benchmark')
+
 local function install(names, load, add)
 	add = add or true
 	local specs = vim.tbl_map(function(x)
@@ -14,15 +16,18 @@ local function install(names, load, add)
 end
 
 
-
-install({ "windwp/nvim-ts-autotag", "neovim/nvim-lspconfig", "ibhagwan/fzf-lua", "mason-org/mason-lspconfig.nvim",
-	"mason-org/mason.nvim", "echasnovski/mini.nvim", "folke/tokyonight.nvim", "nvim-treesitter/nvim-treesitter",
+local end_bench = benchmark:start_bench('Installing non-options plugins')
+install({ "windwp/nvim-ts-autotag", "neovim/nvim-lspconfig", "ibhagwan/fzf-lua",
+	"mason-org/mason.nvim", "mason-org/mason-lspconfig.nvim", "echasnovski/mini.nvim", "folke/tokyonight.nvim",
+	"nvim-treesitter/nvim-treesitter",
 	"nvim-treesitter/nvim-treesitter-context", "folke/trouble.nvim", 'kevinhwang91/nvim-ufo', 'kevinhwang91/promise-async',
 	"tummetott/unimpaired.nvim", "folke/which-key.nvim", "nvim-neo-tree/neo-tree.nvim", "nvim-lua/plenary.nvim",
 	"MunifTanjim/nui.nvim", "nvim-tree/nvim-web-devicons",
 	"folke/which-key.nvim", "kawre/leetcode.nvim", "chomosuke/typst-preview.nvim", "mfussenegger/nvim-dap",
 	"3rd/image.nvim", "windwp/nvim-autopairs", "lervag/vimtex", })
+end_bench()
 
+end_bench = benchmark:start_bench('Installing luasnip')
 -- Those plugins require special configuration
 install(
 	{ { src = "L3MON4D3/LuaSnip", name = "luasnip" }, { src = "hrsh7th/nvim-cmp", name = "cmp" }, 'hrsh7th/cmp-nvim-lsp',
@@ -41,7 +46,9 @@ install(
 		coroutine.resume(build_routine, plug_data)
 	end
 )
+end_bench()
 
+end_bench = benchmark:start_bench('Installing peek.nvim')
 install({ "toppair/peek.nvim" }, function(plug_data)
 	local build_routine = coroutine.create(function(data)
 		vim.system({ "deno", "task", "--quiet", "build:fast" }, { cwd = data.path }, function(o)
@@ -53,6 +60,9 @@ install({ "toppair/peek.nvim" }, function(plug_data)
 	coroutine.resume(build_routine, plug_data)
 end)
 
+end_bench()
+
+end_bench = benchmark:start_bench('Installing markdown preview')
 install({ "iamcco/markdown-preview.nvim" }, function(plug_data)
 	local build_routine = coroutine.create(function(data)
 		vim.system({ "cd app && yarn install" }, { cwd = data.path }, function(o)
@@ -63,3 +73,5 @@ install({ "iamcco/markdown-preview.nvim" }, function(plug_data)
 	end)
 	coroutine.resume(build_routine, plug_data)
 end, false)
+
+end_bench()

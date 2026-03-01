@@ -1,4 +1,6 @@
 -- This file setups all the plugins which are not lazy loaded
+local benchmark = require('benchmark')
+
 
 local function setup_mini()
 	--TODO: Please learn about how to use it perfectly
@@ -117,6 +119,7 @@ end
 
 
 
+local end_bench = benchmark:start_bench("Setup nvim-ts-autotag")
 
 require("nvim-ts-autotag").setup({
 	opts = {
@@ -135,6 +138,10 @@ require("nvim-ts-autotag").setup({
 	}
 }
 );
+end_bench()
+
+end_bench = benchmark:start_bench("Setup nvim-ts-autotag")
+
 require("fzf-lua").setup({
 	keymap = {
 		fzf = {
@@ -152,6 +159,7 @@ local mason_lspconfig_opts = {
 		}
 	},
 }
+
 local image_opts = {
 	backend = "ueberzug",
 	integrations = {
@@ -160,6 +168,9 @@ local image_opts = {
 		}
 	}
 }
+
+end_bench()
+end_bench = benchmark:start_bench("Setup nvim-treesitter")
 
 require("nvim-treesitter.configs").setup({
 	ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "markdown", "markdown_inline" },
@@ -171,18 +182,29 @@ require("nvim-treesitter.configs").setup({
 	}
 })
 
+end_bench()
+
 local plugins_setup = {
 	"trouble", "treesitter-context", "ufo", "unimpaired", "which-key", "mason", "leetcode", "nvim-autopairs", { "mason-lspconfig", mason_lspconfig_opts }, { "image", image_opts },
 }
 vim.g.vimtex_view_method = 'zathura';
 for _, plugin in ipairs(plugins_setup) do
 	if vim.isarray(plugin) then
+	end_bench = benchmark:start_bench('Setup ' .. plugin[1])
 		require(plugin[1]).setup(plugin[2])
 	else
+	end_bench = benchmark:start_bench('Setup ' .. plugin)
 		require(plugin).setup()
 	end
+	end_bench()
 end
 
+end_bench = benchmark:start_bench('Setup luasnip')
 setup_snip()
+end_bench()
+end_bench = benchmark:start_bench('Setup mini')
 setup_mini()
+end_bench()
+end_bench = benchmark:start_bench('Setup peek')
 setup_peek()
+end_bench()

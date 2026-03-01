@@ -19,9 +19,16 @@ vim.o.foldenable = true
 vim.g.mapleader = " "
 vim.g.localmapleader = "\\"
 
-
+local bench = require('benchmark')
+local end_bench = bench:start_bench('Running plugins')
 require("plugins")
+end_bench()
+end_bench = bench:start_bench('Running utils')
 require("utils")
+end_bench()
 
 vim.cmd('colorscheme tokyonight-night')
 vim.lsp.log.set_level("trace")
+
+-- Uncomment this when we have some performance issue it'll try to exlpain what is happening
+-- bench:summarize()
