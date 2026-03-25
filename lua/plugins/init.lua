@@ -9,7 +9,6 @@ end
 require("plugins.setup")
 
 
-
 -- Make sure every plugin is loaded
 
 -- Run TSUpdate when

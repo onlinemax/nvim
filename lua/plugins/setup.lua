@@ -140,7 +140,7 @@ require("nvim-ts-autotag").setup({
 );
 end_bench()
 
-end_bench = benchmark:start_bench("Setup nvim-ts-autotag")
+end_bench = benchmark:start_bench("Setup fzf-lua")
 
 require("fzf-lua").setup({
 	keymap = {
@@ -169,6 +169,19 @@ local image_opts = {
 	}
 }
 
+local conform_opts = {
+	lua = { "stylua" },
+	python = { "isort", "black" },
+	rust = { "rustfmt", lsp_format = "fallback" },
+	javascript = { "prettierd", "prettier", stop_after_first = true },
+	typescript = { "prettierd", "prettier", stop_after_first = true },
+	format_on_save = {
+		timeout_ms = 500,
+		lsp_format = "fallback",
+	},
+
+}
+
 end_bench()
 end_bench = benchmark:start_bench("Setup nvim-treesitter")
 
@@ -185,15 +198,15 @@ require("nvim-treesitter.configs").setup({
 end_bench()
 
 local plugins_setup = {
-	"trouble", "treesitter-context", "ufo", "unimpaired", "which-key", "mason", "leetcode", "nvim-autopairs", { "mason-lspconfig", mason_lspconfig_opts }, { "image", image_opts },
+	"trouble", "treesitter-context", "ufo", "unimpaired", "which-key", "mason", "leetcode", "nvim-autopairs", { "mason-lspconfig", mason_lspconfig_opts }, { "image", image_opts }, { "conform", conform_opts }
 }
 vim.g.vimtex_view_method = 'zathura';
 for _, plugin in ipairs(plugins_setup) do
 	if vim.isarray(plugin) then
-	end_bench = benchmark:start_bench('Setup ' .. plugin[1])
+		end_bench = benchmark:start_bench('Setup ' .. plugin[1])
 		require(plugin[1]).setup(plugin[2])
 	else
-	end_bench = benchmark:start_bench('Setup ' .. plugin)
+		end_bench = benchmark:start_bench('Setup ' .. plugin)
 		require(plugin).setup()
 	end
 	end_bench()

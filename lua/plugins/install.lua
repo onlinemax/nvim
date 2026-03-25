@@ -24,7 +24,7 @@ install({ "windwp/nvim-ts-autotag", "neovim/nvim-lspconfig", "ibhagwan/fzf-lua",
 	"tummetott/unimpaired.nvim", "folke/which-key.nvim", "nvim-neo-tree/neo-tree.nvim", "nvim-lua/plenary.nvim",
 	"MunifTanjim/nui.nvim", "nvim-tree/nvim-web-devicons",
 	"folke/which-key.nvim", "kawre/leetcode.nvim", "chomosuke/typst-preview.nvim", "mfussenegger/nvim-dap",
-	"3rd/image.nvim", "windwp/nvim-autopairs", "lervag/vimtex", })
+	"3rd/image.nvim", "windwp/nvim-autopairs", "lervag/vimtex", "stevearc/conform.nvim" })
 end_bench()
 
 end_bench = benchmark:start_bench('Installing luasnip')
