@@ -179,9 +179,13 @@ local conform_opts = {
 		timeout_ms = 500,
 		lsp_format = "fallback",
 	},
-
 }
-
+local auto_session_opts = {
+	-- do not create a session in those directories
+	suppressed_dirs = { "~/", "~/Documents/Programs", "~/Documents", "~/Downloads", "/" },
+	-- Prevent neo-tree buffer
+	bypass_save_filetypes = { 'neo-tree' },
+}
 end_bench()
 end_bench = benchmark:start_bench("Setup nvim-treesitter")
 
@@ -198,7 +202,7 @@ require("nvim-treesitter.configs").setup({
 end_bench()
 
 local plugins_setup = {
-	"trouble", "treesitter-context", "ufo", "unimpaired", "which-key", "mason", "leetcode", "nvim-autopairs", { "mason-lspconfig", mason_lspconfig_opts }, { "image", image_opts }, { "conform", conform_opts }
+	"trouble", "treesitter-context", "ufo", "unimpaired", "which-key", "mason", "leetcode", "nvim-autopairs", "harpoon", { "mason-lspconfig", mason_lspconfig_opts }, { "image", image_opts }, { "conform", conform_opts }, { "auto-session", auto_session_opts }
 }
 vim.g.vimtex_view_method = 'zathura';
 for _, plugin in ipairs(plugins_setup) do
