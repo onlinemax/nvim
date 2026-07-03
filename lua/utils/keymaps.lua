@@ -1,10 +1,11 @@
 -- Neotree operner
 vim.keymap.set("n", '\\', ':Neotree toggle<CR>', { desc = "Show file tree (Neotree) " })
 
-vim.keymap.set("n", '<C-h>', '<C-w>h', { desc = "Go to the window at the left" })
-vim.keymap.set("n", '<C-j>', '<C-w>j', { desc = "Go to the window at the bottom" })
-vim.keymap.set("n", '<C-k>', '<C-w>k', { desc = "Go to the window at the top" })
-vim.keymap.set("n", '<C-l>', '<C-w>l', { desc = "Go to the window at the right" })
+vim.keymap.set("n", '<C-h>', function() require("tmux").move_left() end, { desc = "Go to the window at the left" })
+vim.keymap.set("n", '<C-j>', function() require("tmux").move_bottom() end, { desc = "Go to the window at the bottom" })
+vim.keymap.set("n", '<C-k>', function() require("tmux").move_top() end, { desc = "Go to the window at the top" })
+vim.keymap.set("n", '<C-l>', function() require("tmux").move_right() end, { desc = "Go to the window at the right" })
+
 
 vim.keymap.set("n", '<leader>f', vim.lsp.buf.format, { desc = "Format Buffer" })
 
@@ -15,13 +16,13 @@ vim.keymap.set("n", "<leader>sh", require("fzf-lua").helptags, { desc = "Seach h
 vim.keymap.set("n", "<leader>sm", require("fzf-lua").manpages, { desc = "Seach Man pages" })
 vim.keymap.set("n", "<leader>so", require("fzf-lua").oldfiles, { desc = "Seach Old files" })
 vim.keymap.set("n", "<leader>th", function()
-	vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+  vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
 end, { desc = "toggle hinlay hits" })
 
 
 
 vim.keymap.set("n", "<leader>rn", function()
-	vim.ui.input({ prompt = "New Name: " }, vim.lsp.buf.rename);
+  vim.ui.input({ prompt = "New Name: " }, vim.lsp.buf.rename);
 end, { desc = 'Rename' })
 vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "Code Actions" })
 
@@ -40,27 +41,27 @@ vim.keymap.set("v", ">", ">gv");
 -- Trouble keymaps
 vim.keymap.set("n", "<leader>xx", "<cmd>Trouble diagnostics toggle<cr>", { desc = "Diagnostics (Trouble)" })
 vim.keymap.set("n", "<leader>xX", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
-	{ desc = "Buffer Diagnostics (Trouble)" })
+  { desc = "Buffer Diagnostics (Trouble)" })
 vim.keymap.set("n", "<leader>cs", "<cmd>Trouble symbols toggle focus=false<cr>", { desc = "Symbols (Trouble)" })
 vim.keymap.set("n", "<leader>cl", "<cmd>Trouble lsp toggle focus=false win.position=right<cr>",
-	{ desc = "LSP Definitions / references / ... (Trouble)" })
+  { desc = "LSP Definitions / references / ... (Trouble)" })
 vim.keymap.set("n", "<leader>xL", "<cmd>Trouble loclist toggle<cr>", { desc = "Location List (Trouble)" })
 vim.keymap.set("n", "<leader>xQ", "<cmd>Trouble qflist toggle<cr>", { desc = "Quickfix List (Trouble)" })
 
 
 -- Which Keymaps
 vim.keymap.set("n", "<leader>?", function()
-	require("which-key").show({ global = false })
+  require("which-key").show({ global = false })
 end, { desc = "Buffer Local Keymaps (which-key)" })
 
 
 vim.keymap.set("n", "<leader>a", function() require("harpoon"):list():add() end)
 vim.keymap.set("n", "<C-e>", function() require("harpoon").ui:toggle_quick_menu(require("harpoon"):list()) end)
 
-vim.keymap.set("n", "<C-r>", function() require("harpoon"):list():select(1) end)
-vim.keymap.set("n", "<C-t>", function() require("harpoon"):list():select(2) end)
-vim.keymap.set("n", "<C-n>", function() require("harpoon"):list():select(3) end)
-vim.keymap.set("n", "<C-s>", function() require("harpoon"):list():select(4) end)
+-- vim.keymap.set("n", "<C-r>", function() require("harpoon"):list():select(1) end)
+-- vim.keymap.set("n", "<C-t>", function() require("harpoon"):list():select(2) end)
+-- vim.keymap.set("n", "<C-n>", function() require("harpoon"):list():select(3) end)
+-- vim.keymap.set("n", "<C-s>", function() require("harpoon"):list():select(4) end)
 
 -- Toggle previous & next buffers stored within Harpoon list
 vim.keymap.set("n", "<C-S-P>", function() require("harpoon"):list():prev() end)
