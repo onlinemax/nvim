@@ -6,6 +6,7 @@ vim.o.smartcase = true
 vim.o.ignorecase = true
 vim.o.shiftwidth = 2
 vim.o.undofile = true
+vim.o.rtp = vim.o.rtp .. "/home/max/.opam/cs3110-2026fa/share/ocp-indent/vim"
 -- this is important if you're going to use an application that uses a filewatcher (bundler, cron)
 vim.o.backupcopy = "yes"
 vim.g.gruvbox_material_background = "hard"

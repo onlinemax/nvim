@@ -142,6 +142,8 @@ end_bench()
 end_bench = benchmark:start_bench("Setup fzf-lua")
 
 require("fzf-lua").setup({
+  file_icons = false,
+  git_icons = false,
   keymap = {
     fzf = {
       ["tab"] = "down",
@@ -198,8 +200,13 @@ local auto_session_opts = {
 end_bench()
 end_bench = benchmark:start_bench("Setup nvim-treesitter")
 
-require("nvim-treesitter").install({ "c", "lua", "vim", "vimdoc", "query", "markdown", "markdown_inline", "svelte" })
+require("nvim-treesitter").install({ "c", "lua", "vim", "vimdoc", "query", "markdown", "markdown_inline", "svelte",
+  "javascript", "typescript", "html", "css" })
     :wait(60000) -- wait for max 5 minute
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = { "c", "cpp", "h", "hpp", "lua", "md", "svelte", "ts", "js", "html", "jsx", "tsx", "css", "scss" },
+  callback = function() vim.treesitter.start() end,
+})
 
 end_bench()
 
